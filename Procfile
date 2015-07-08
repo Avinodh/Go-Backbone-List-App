@@ -1,1 +1,1 @@
-web: testapi
+web: ./testapi
