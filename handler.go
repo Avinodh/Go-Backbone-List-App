@@ -11,6 +11,7 @@ import (
 	//"time"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 	"io/ioutil"
 	"log"
 )
@@ -65,17 +66,19 @@ func FetchBlogs(rw http.ResponseWriter, r *http.Request) {
 
 	/************* DB Connection *************/
 
-	db, err := sql.Open("mysql",
-		"root:root@tcp(127.0.0.1:8889)/GoTest")
+	//db, err := sql.Open("mysql","root:root@tcp(127.0.0.1:8889)/GoTest")
 
-	if err != nil {
+	db, err := sql.Open("postgres", "postgres://wgjrelaobwlfug:zCi_9ifZdahE_E7nwFVtul2FRv@ec2-54-83-57-86.compute-1.amazonaws.com:5432/de08tulmlv9ho")
+	checkErr(err)
+
+	/*if err != nil {
 		log.Fatal(err)
 	}
 
 	err = db.Ping()
 	if err == nil {
 		log.Println("Success connecting to Database!")
-	}
+	}*/
 
 	/******************************************/
 
@@ -88,18 +91,14 @@ func FetchBlogs(rw http.ResponseWriter, r *http.Request) {
 		url    string
 	)
 
-	rows, err := db.Query("select * from Blog")
-	if err != nil {
-		log.Fatal(err)
-	}
+	rows, err := db.Query("SELECT * from Blog")
+	checkErr(err)
 	var blogs = Blogs{}
 
 	for rows.Next() {
 
 		err := rows.Scan(&id, &author, &title, &url)
-		if err != nil {
-			log.Fatal(err)
-		}
+		checkErr(err)
 
 		blog := Blog{Id: id, Author: author, Title: title, Url: url}
 		blogs = append(blogs, blog)
@@ -129,38 +128,37 @@ func PostBlog(rw http.ResponseWriter, r *http.Request) {
 
 	/************* Connecting to DB *************/
 
-	db, err := sql.Open("mysql",
-		"root:root@tcp(127.0.0.1:8889)/GoTest")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = db.Ping()
-	if err == nil {
-		log.Println("Success connecting to Database!")
-	}
-
+	db, err := sql.Open("postgres", "postgres://wgjrelaobwlfug:zCi_9ifZdahE_E7nwFVtul2FRv@ec2-54-83-57-86.compute-1.amazonaws.com:5432/de08tulmlv9ho")
+	checkErr(err)
 	/******************************************/
 
 	/************* Writing to DB *************/
 
-	pquery, err := db.Prepare("INSERT INTO Blog(author, title, url) VALUES(?, ?, ?)")
+	var lastInsertId int
+	//pquery, err := db.Prepare("INSERT INTO Blog(author, title, url) VALUES(?, ?, ?)")
+	err = db.QueryRow("INSERT INTO Blog(author, title, url) VALUES($1,$2,$3) returning id;", blogPost.Author, blogPost.Title, blogPost.Url).Scan(&lastInsertId)
+	checkErr(err)
+
+	/*res, err := pquery.Exec(blogPost.Author, blogPost.Title, blogPost.Url)
 	if err != nil {
 		log.Fatal(err)
 	}
-	res, err := pquery.Exec(blogPost.Author, blogPost.Title, blogPost.Url)
-	if err != nil {
-		log.Fatal(err)
-	}
-	_ = res
+	_ = res*/
 	/*lastId, err := res.LastInsertId()
 	if err != nil {
 		log.Fatal(err)
 	}*/
 
-	fmt.Fprintf(rw, "Success")
+	fmt.Fprintf(rw, "Success! Inserted:"+string(lastInsertId))
 
 	/******************************************/
 
+	defer db.Close()
+
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
