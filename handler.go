@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 	"io/ioutil"
 	"log"
@@ -91,6 +92,32 @@ func PostBlog(rw http.ResponseWriter, r *http.Request) {
 	checkErr(err)
 
 	fmt.Fprintf(rw, "Success! Inserted:"+string(lastInsertId))
+
+	/******************************************/
+
+	defer db.Close()
+
+}
+
+func DeleteBlog(rw http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	/************* Connecting to DB *************/
+
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	checkErr(err)
+	/******************************************/
+
+	/************* Deleting from DB *************/
+
+	pquery, err := db.Prepare("DELETE FROM Blog WHERE id=$1")
+	checkErr(err)
+
+	_, e := pquery.Exec(id)
+	checkErr(e)
+
+	fmt.Fprintf(rw, "Deleted:"+string(id))
 
 	/******************************************/
 
