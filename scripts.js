@@ -59,7 +59,7 @@ var BlogView = Backbone.View.extend({
 		this.model.destroy({
 			success: function(response)
 			{
-				console.log("Successfully DELETED blog with id:" + response.toJSON().id);
+				console.log("Successfully DELETED blog with id:" + response;
 			},
 			error: function(){
 				console.log("Faield to DELETE"); 
