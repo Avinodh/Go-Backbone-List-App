@@ -68,7 +68,7 @@ func FetchBlogs(rw http.ResponseWriter, r *http.Request) {
 
 	//db, err := sql.Open("mysql","root:root@tcp(127.0.0.1:8889)/GoTest")
 
-	db, err := sql.Open("postgres", "postgres://wgjrelaobwlfug:zCi_9ifZdahE_E7nwFVtul2FRv@ec2-54-83-57-86.compute-1.amazonaws.com:5432/de08tulmlv9ho")
+	db, err := sql.Open("postgres", "DATABASE_URL")
 	checkErr(err)
 
 	/*if err != nil {
@@ -128,7 +128,7 @@ func PostBlog(rw http.ResponseWriter, r *http.Request) {
 
 	/************* Connecting to DB *************/
 
-	db, err := sql.Open("postgres", "postgres://wgjrelaobwlfug:zCi_9ifZdahE_E7nwFVtul2FRv@ec2-54-83-57-86.compute-1.amazonaws.com:5432/de08tulmlv9ho")
+	db, err := sql.Open("postgres", "DATABASE_URL")
 	checkErr(err)
 	/******************************************/
 
