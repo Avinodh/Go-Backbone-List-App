@@ -103,6 +103,13 @@ func UpdateBlog(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
+	decoder := json.NewDecoder(r.Body)
+	var blogPost Blog
+	err := decoder.Decode(&blogPost)
+	if err != nil {
+		panic(err)
+	}
+
 	/************* Connecting to DB *************/
 
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
@@ -114,7 +121,7 @@ func UpdateBlog(rw http.ResponseWriter, r *http.Request) {
 	pquery, err := db.Prepare("UPDATE Blog SET author=$1, title=$2, url=$3  where id=$4")
 	checkErr(err)
 
-	_, e := pquery.Exec(id)
+	_, e := pquery.Exec(blogPost.Author, blogPost.Title, blogPost.Url, id)
 	checkErr(e)
 
 	fmt.Fprintf(rw, "Updated:"+string(id))
