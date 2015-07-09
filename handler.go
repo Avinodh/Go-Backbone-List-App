@@ -99,6 +99,32 @@ func PostBlog(rw http.ResponseWriter, r *http.Request) {
 
 }
 
+func UpdateBlog(rw http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	/************* Connecting to DB *************/
+
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	checkErr(err)
+	/******************************************/
+
+	/************* Updating DB *************/
+
+	pquery, err := db.Prepare("UPDATE Blog SET author=$1, title=$2, url=$3  where id=$4")
+	checkErr(err)
+
+	_, e := pquery.Exec(id)
+	checkErr(e)
+
+	fmt.Fprintf(rw, "Updated:"+string(id))
+
+	/******************************************/
+
+	defer db.Close()
+
+}
+
 func DeleteBlog(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]

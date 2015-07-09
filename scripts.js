@@ -49,6 +49,14 @@ var BlogView = Backbone.View.extend({
 						'title':this.$(".title-update").val(), 
 						'url':this.$(".url-update").val()
 					}); 
+		this.model.save(null, {
+			success: function(response){
+				console.log("Successfully UPDATED"); 
+			},
+			error: function(){
+				console.log("Error"); 
+			}
+		}); 
 	},
 
 	cancel: function(){

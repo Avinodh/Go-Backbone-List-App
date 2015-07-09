@@ -42,6 +42,13 @@ var routes = Routes{
 		"/api/blogs/{id}",
 		DeleteBlog,
 	},
+
+	Route{
+		"UpdateBlog",
+		"PUT",
+		"/api/blogs/{id}",
+		UpdateBlog,
+	},
 }
 
 func NewRouter() *mux.Router {
