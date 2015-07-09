@@ -1,61 +1,20 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	//"html"
-	//"log"
-	"net/http"
-	"strconv"
-	//"time"
-	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
-)
-
-var (
-	todos = Todos{
-		Todo{Id: 1, Name: "Event 1"},
-		Todo{Id: 2, Name: "Event 2"},
-	}
 )
 
 func Index(rw http.ResponseWriter, r *http.Request) {
 	body, _ := ioutil.ReadFile("index.html")
 	fmt.Fprint(rw, string(body))
-}
-
-func TodoIndex(rw http.ResponseWriter, r *http.Request) {
-
-	/*********************SETTING HEADERS*********************/
-	rw.Header().Set("Content-Type", "application/json;charset=UTF-8")
-	rw.WriteHeader(http.StatusOK)
-	/*********************************************************/
-
-	if err := json.NewEncoder(rw).Encode(todos); err != nil {
-		panic(err)
-	}
-
-}
-
-func TodoShow(rw http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	var todoId int
-	todoId, _ = strconv.Atoi(vars["todoId"])
-
-	for _, t := range todos {
-		if t.Id == todoId {
-			if err := json.NewEncoder(rw).Encode(t); err != nil {
-				panic(err)
-			}
-		}
-	}
-	fmt.Fprintf(rw, "Record with id=%d not present", todoId)
-
 }
 
 func FetchBlogs(rw http.ResponseWriter, r *http.Request) {
@@ -71,15 +30,6 @@ func FetchBlogs(rw http.ResponseWriter, r *http.Request) {
 
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	checkErr(err)
-
-	/*if err != nil {
-		log.Fatal(err)
-	}
-
-	err = db.Ping()
-	if err == nil {
-		log.Println("Success connecting to Database!")
-	}*/
 
 	/******************************************/
 
@@ -139,16 +89,6 @@ func PostBlog(rw http.ResponseWriter, r *http.Request) {
 	//pquery, err := db.Prepare("INSERT INTO Blog(author, title, url) VALUES(?, ?, ?)")
 	err = db.QueryRow("INSERT INTO Blog(author, title, url) VALUES($1,$2,$3) returning id;", blogPost.Author, blogPost.Title, blogPost.Url).Scan(&lastInsertId)
 	checkErr(err)
-
-	/*res, err := pquery.Exec(blogPost.Author, blogPost.Title, blogPost.Url)
-	if err != nil {
-		log.Fatal(err)
-	}
-	_ = res*/
-	/*lastId, err := res.LastInsertId()
-	if err != nil {
-		log.Fatal(err)
-	}*/
 
 	fmt.Fprintf(rw, "Success! Inserted:"+string(lastInsertId))
 

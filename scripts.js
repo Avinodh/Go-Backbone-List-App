@@ -9,14 +9,8 @@ var Blog = Backbone.Model.extend({
 
 // Backbone Collection
 var Blogs = Backbone.Collection.extend({
-	//url: 'http://localhost:8080/api/blogs'
 	url: '/api/blogs'
 }); 
-
-// Instantiate two Blog posts
-var blog1 = new Blog({author:"Vin", title:"Vin\'s Blog", url:"www.ashvinvinodh.com"});
-var blog2 = new Blog({author:"John", title:"John's Blog", url:"www.john.com"});
-
 
 // Instantiate a Collection
 var blogs = new Blogs(); 
