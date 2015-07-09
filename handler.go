@@ -118,13 +118,13 @@ func UpdateBlog(rw http.ResponseWriter, r *http.Request) {
 
 	/************* Updating DB *************/
 
-	pquery, err := db.Prepare("UPDATE Blog SET author=$1, title=$2, url=$3  where id=$4")
+	pquery, err := db.Prepare("UPDATE Blog SET author=$1, title=$2, url=$3  WHERE id=$4")
 	checkErr(err)
 
 	_, e := pquery.Exec(blogPost.Author, blogPost.Title, blogPost.Url, id)
 	checkErr(e)
 
-	fmt.Fprintf(rw, "Updated:"+string(id))
+	fmt.Fprintf(rw, "Updated")
 
 	/******************************************/
 
