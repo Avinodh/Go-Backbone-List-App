@@ -14,6 +14,7 @@ import (
 	_ "github.com/lib/pq"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 var (
