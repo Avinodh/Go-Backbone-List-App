@@ -21,7 +21,7 @@ var hackathons = new Hackathons();
 //View for one Hackathon
 var HackathonView = Backbone.View.extend({
 	model: new Hackathon(), 
-	tagName: 'tr', 
+	tagName: 'span', 
 	initialize: function(){
 		this.template = _.template($('.hackathons-list-template').html())
 	}, 
