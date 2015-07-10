@@ -1,4 +1,4 @@
-$(document).ready(function()){
+/*
 
 // Hackathon Model
 var Hackathon = Backbone.Model.extend({
@@ -67,7 +67,7 @@ var hackathonsView = new HackathonsView();
 }); 
 
 
-/*
+*/
 
 
 // Backbone Model
@@ -211,4 +211,4 @@ $(document).ready(function(){
 			}
 		});
 	});
-});*/
+});
