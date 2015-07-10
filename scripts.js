@@ -1,3 +1,72 @@
+// Hackathon Model
+var Hackathon = Backbone.Model.extend({
+	defaults: {
+		name: '', 
+		organiser: '', 
+		location: '',
+		date: '',
+		image: '', 
+		url: '', 
+	}	
+});
+
+// Hackathon Collection
+var Hackathons = Backbone.Collection.extend({
+	url: '/api/hackathons' 
+});
+
+// Instantiate a new hackathon Collection
+var hackathons = new Hackathons(); 
+
+//View for one Hackathon
+var HackathonView = Backbone.View.extend({
+	model: new Hackathon(), 
+	tagName: 'tr', 
+	initialize: function(){
+		this.template = _.template($('.hackathons-list-template').html())
+	}, 
+	render: function(){
+		this.$el.html(this.template(this.model.toJSON()));
+		return this;
+	}
+});
+
+var HackathonsView = Backbone.View.extend({
+	model:hackathons,  //collection
+	el: $('.hackathons-list'),
+	initialize: function(){ 
+		var self = this; 
+		this.model.fetch({
+			success: function(response)
+			{
+				_.each(response.toJSON(), function(item){
+					console.log('Successfully GOT blog with id: ' + item.id);
+				}); 
+			},
+
+			error: function(){
+				console.log('Failed to get blogs.');
+			}
+		}); 
+	}, 
+	render: function(){
+		var self = this; 
+		this.$el.html('');
+		_.each(this.model.toArray(), function(hackathons){
+			self.$el.append((new HackathonView({model:hackathon})).render().$el)
+		});
+		return this; 
+	}
+});
+
+
+var hackathonsView = new HackathonsView(); 
+
+
+
+/*
+
+
 // Backbone Model
 var Blog = Backbone.Model.extend({
 	defaults: {
@@ -139,4 +208,4 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+});*/

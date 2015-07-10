@@ -23,14 +23,30 @@
 				<td><button class="btn btn-primary add-blog">Add</td>
 			</tr>
 	</thead>
-		<tbody class="blogs-list"></tbody>
+		<!--<tbody class="blogs-list"></tbody>-->
+		<tbody class="hackathons-list"></tbody>
 	</table>
 	</div>
 	
-	<script type="text/template" class="blogs-list-template">
+	<!--<script type="text/template" class="blogs-list-template">
 		<td><span class="author"><%= author %></span></td> 
 		<td><span class="title"><%= title %></span></td> 
 		<td><span class="url"><%= url %></span></td> 
+		<td>
+			<button class="btn btn-warning edit-blog">Edit</button>
+			<button class="btn btn-danger delete-blog">Delete</button>
+			<button class="btn btn-success update-blog" style="display:none;">Update</button>
+			<button class="btn btn-danger cancel" style="display:none;">Cancel</button>
+		</td> 
+	</script> -->
+
+	<script type="text/template" class="hackathons-list-template">
+		<td><span class="name"><%= name %></span></td> 
+		<td><span class="organiser"><%= organiser %></span></td> 
+		<td><span class="location"><%= location %></span></td> 
+		<td><span class="date"><%= date %></span></td>
+		<td><span class="image"><%= image %></span></td>
+		<td><span class="url"><%= url %></span></td>
 		<td>
 			<button class="btn btn-warning edit-blog">Edit</button>
 			<button class="btn btn-danger delete-blog">Delete</button>

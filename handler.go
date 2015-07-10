@@ -158,6 +158,62 @@ func DeleteBlog(rw http.ResponseWriter, r *http.Request) {
 
 }
 
+func FetchHackathons(rw http.ResponseWriter, r *http.Request) {
+
+	/*********************SETTING HEADERS*********************/
+	rw.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	rw.WriteHeader(http.StatusOK)
+	/*********************************************************/
+
+	/************* DB Connection *************/
+
+	//db, err := sql.Open("mysql","root:root@tcp(127.0.0.1:8889)/GoTest")
+
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	checkErr(err)
+
+	/******************************************/
+
+	/************* Reading from DB *************/
+
+	var (
+		id        int
+		name      string
+		organiser string
+		location  string
+		date      string
+		image     string
+		url       string
+	)
+
+	rows, err := db.Query("SELECT * from Hackathons")
+	checkErr(err)
+
+	var hackathons = Hackathons{}
+
+	for rows.Next() {
+
+		err := rows.Scan(&id, &name, &organiser, &location, &date, &image, &url)
+		checkErr(err)
+
+		event := Hackathon{Id: id, Name: name, Organiser: organiser, Location: location, Date: date, Image: image, Url: url}
+		hackathons = append(hackathons, event)
+	}
+
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if err := json.NewEncoder(rw).Encode(hackathons); err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+
+	/******************************************/
+	defer db.Close()
+}
+
 func checkErr(err error) {
 	if err != nil {
 		panic(err)

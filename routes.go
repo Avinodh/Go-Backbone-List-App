@@ -49,6 +49,13 @@ var routes = Routes{
 		"/api/blogs/{id}",
 		UpdateBlog,
 	},
+
+	Route{
+		"FetchHackathons",
+		"GET",
+		"/api/hackathons",
+		FetchHackathons,
+	},
 }
 
 func NewRouter() *mux.Router {
