@@ -40,19 +40,19 @@ var HackathonsView = Backbone.View.extend({
 			success: function(response)
 			{
 				_.each(response.toJSON(), function(item){
-					console.log('Successfully GOT blog with id: ' + item.id);
+					console.log('Successfully GOT hackathon with id: ' + item.id);
 				}); 
 			},
 
 			error: function(){
-				console.log('Failed to get blogs.');
+				console.log('Failed to get hackathons.');
 			}
 		}); 
 	}, 
 	render: function(){
 		var self = this; 
 		this.$el.html('');
-		_.each(this.model.toArray(), function(hackathons){
+		_.each(this.model.toArray(), function(hackathon){
 			self.$el.append((new HackathonView({model:hackathon})).render().$el);
 		});
 		return this; 
