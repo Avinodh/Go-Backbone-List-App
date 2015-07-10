@@ -40,7 +40,7 @@ var HackathonsView = Backbone.View.extend({
 			success: function(response)
 			{
 				_.each(response.toJSON(), function(item){
-					console.log('Successfully GOT hackathon with id: ' + item.id);
+					console.log('Successfully GOT hackathon: ' + item);
 				}); 
 			},
 
