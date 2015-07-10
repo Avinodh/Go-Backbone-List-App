@@ -31,6 +31,7 @@ var HackathonView = Backbone.View.extend({
 	}
 });
 
+//View for all hackathons
 var HackathonsView = Backbone.View.extend({
 	model:hackathons,  //collection
 	el: $('.hackathons-list'),
