@@ -2,6 +2,7 @@
 	<head>
 		<title></title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/main.css">
 
 	</head>
 
@@ -26,19 +27,24 @@
 			</tr>-->
 	</thead>
 		<!--<tbody class="blogs-list"></tbody>-->
-		<tbody class="hackathons-list"></tbody>
+		<!--<tbody class="hackathons-list"></tbody>-->
+		<div class="hackathons-list"></div>
 	</table>
 	</div>
 	
 	
 
 	<script type="text/template" class="hackathons-list-template">
-		<td><span class="name"><%= name %></span></td> 
+		/*<td><span class="name"><%= name %></span></td> 
 		<td><span class="organiser"><%= organiser %></span></td> 
 		<td><span class="location"><%= location %></span></td> 
 		<td><span class="date"><%= date %></span></td>
 		<td><span class="image"><%= image %></span></td>
-		<td><span class="url"><%= url %></span></td>
+		<td><span class="url"><%= url %></span></td>*/
+
+		<div class="card">
+			<div class="event-image" style="background-image:url(<%= image %>);background-size:contain; background-position:center; background-repeat:no-repeat; "></div>
+		</div>
 	</script> 
 
 	<!--<script type="text/template" class="blogs-list-template">
