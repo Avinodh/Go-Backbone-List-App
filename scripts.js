@@ -37,6 +37,7 @@ var HackathonsView = Backbone.View.extend({
 	el: $('.hackathons-list'),
 	initialize: function(){ 
 		var self = this; 
+		this.model.on('change', this.render, this);
 		this.model.fetch({
 			success: function(response)
 			{
@@ -50,7 +51,7 @@ var HackathonsView = Backbone.View.extend({
 				console.log('Failed to get hackathons.');
 			}
 		}); 
-		this.render(); 
+
 	}, 
 	render: function(){
 		var self = this; 
