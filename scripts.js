@@ -53,7 +53,7 @@ var HackathonsView = Backbone.View.extend({
 		var self = this; 
 		this.$el.html('');
 		_.each(this.model.toArray(), function(hackathons){
-			self.$el.append((new HackathonView({model:hackathon})).render().$el)
+			self.$el.append((new HackathonView({model:hackathon})).render().$el);
 		});
 		return this; 
 	}
