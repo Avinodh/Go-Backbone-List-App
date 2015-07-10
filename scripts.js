@@ -1,3 +1,5 @@
+$(document).ready(function()){
+
 // Hackathon Model
 var Hackathon = Backbone.Model.extend({
 	defaults: {
@@ -62,6 +64,7 @@ var HackathonsView = Backbone.View.extend({
 
 var hackathonsView = new HackathonsView(); 
 
+}); 
 
 
 /*
