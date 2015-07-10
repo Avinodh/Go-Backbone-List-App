@@ -43,13 +43,14 @@ var HackathonsView = Backbone.View.extend({
 				_.each(response.toJSON(), function(item){
 					console.log('Successfully GOT hackathon: ' + item.id +' '+ item.name);
 				}); 
-				render(); 
+
 			},
 
 			error: function(){
 				console.log('Failed to get hackathons.');
 			}
 		}); 
+		this.render(); 
 	}, 
 	render: function(){
 		var self = this; 
