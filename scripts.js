@@ -1,5 +1,5 @@
 // Hackathon Model
-var Hackathon = Backbone.Model.extend({
+/*var Hackathon = Backbone.Model.extend({
 	defaults: {
 		name: '', 
 		organiser: '', 
@@ -53,16 +53,16 @@ var HackathonsView = Backbone.View.extend({
 		var self = this; 
 		this.$el.html('');
 		_.each(this.model.toArray(), function(hackathon){
-			self.$el.append((new HackathonView({model:hackathon})).render().$el);
+			self.$el.append((new HackathonView({model:hackathon})).render().$el)
 		});
 		return this; 
 	}
 });
-
+*/
 
  
 
-/*
+
 // Backbone Model
 var Blog = Backbone.Model.extend({
 	defaults: {
@@ -177,10 +177,10 @@ var BlogsView = Backbone.View.extend({
 		});
 		return this; 
 	}
-}); */
+}); 
 
-//var blogsView = new BlogsView(); 
-var hackathonsView = new HackathonsView();
+var blogsView = new BlogsView(); 
+//var hackathonsView = new HackathonsView();
 
 $(document).ready(function(){
 
