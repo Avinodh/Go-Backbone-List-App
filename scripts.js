@@ -1,5 +1,5 @@
 // Hackathon Model
-/*var Hackathon = Backbone.Model.extend({
+var Hackathon = Backbone.Model.extend({
 	defaults: {
 		name: '', 
 		organiser: '', 
@@ -58,10 +58,10 @@ var HackathonsView = Backbone.View.extend({
 		return this; 
 	}
 });
-*/
+
 
  
-
+/*
 
 // Backbone Model
 var Blog = Backbone.Model.extend({
@@ -177,12 +177,12 @@ var BlogsView = Backbone.View.extend({
 		});
 		return this; 
 	}
-}); 
+}); */
 
-var blogsView = new BlogsView(); 
-//var hackathonsView = new HackathonsView();
+//var blogsView = new BlogsView(); 
+var hackathonsView = new HackathonsView();
 
-$(document).ready(function(){
+/*$(document).ready(function(){
 
 	$(".add-blog").on("click", function(){
 		var blog = new Blog({
@@ -205,4 +205,4 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+});*/
