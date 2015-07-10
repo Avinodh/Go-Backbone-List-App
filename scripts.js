@@ -53,6 +53,7 @@ var HackathonsView = Backbone.View.extend({
 	render: function(){
 		var self = this; 
 		this.$el.html('<h1>Passed this..</h1>');
+		alert("check");
 		/*_.each(this.model.toArray(), function(hack){
 			self.$el.append((new HackathonView({model:hack})).render().$el);
 		});*/
