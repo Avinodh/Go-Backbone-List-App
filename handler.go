@@ -186,7 +186,7 @@ func FetchHackathons(rw http.ResponseWriter, r *http.Request) {
 		url       string
 	)
 
-	rows, err := db.Query("SELECT * from Hackathons")
+	rows, err := db.Query("SELECT * FROM Hackathons")
 	checkErr(err)
 
 	var hackathons = Hackathons{}
