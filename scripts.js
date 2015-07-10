@@ -43,6 +43,7 @@ var HackathonsView = Backbone.View.extend({
 				_.each(response.toJSON(), function(item){
 					console.log('Successfully GOT hackathon: ' + item.id +' '+ item.name);
 				}); 
+				this.render(); 
 			},
 
 			error: function(){
@@ -52,11 +53,11 @@ var HackathonsView = Backbone.View.extend({
 	}, 
 	render: function(){
 		var self = this; 
-		this.$el.html('<h1>Passed this..</h1>');
-		alert("check");
-		/*_.each(this.model.toArray(), function(hack){
+		this.$el.html('');
+		console.log('Rendering..'); 
+		_.each(this.model.toArray(), function(hack){
 			self.$el.append((new HackathonView({model:hack})).render().$el);
-		});*/
+		});
 		return this; 
 	}
 });
