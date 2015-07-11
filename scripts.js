@@ -188,10 +188,7 @@ var BlogsView = Backbone.View.extend({
 var hackathonsView = new HackathonsView();
 
 $(document).ready(function(){
-	console.log("Here"); 
-	particlesJS.load('particles-js', '/particles.js-master/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-	});
+	alert("hi"); 
 });
 /*$(document).ready(function(){
 
