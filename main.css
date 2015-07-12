@@ -2,7 +2,7 @@
 	width:200px;
 	height:300px; 
 	display:inline-block; 
-	background-color:rgba(0,0,0,0.6);
+	background-color:rgba(0,0,0,0.8);
 	border-radius:10px;
 	box-shadow:2px 2px 2px gray;
 	margin-right:40px;
@@ -13,6 +13,7 @@
 	height:120px;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
+	cursor: pointer;
 }
 
 .lineb{
@@ -25,4 +26,8 @@
 .hackathons-list{
 	width:100%; 
 	position:absolute; 
+}
+
+.event-info{
+	color:white; 
 }
