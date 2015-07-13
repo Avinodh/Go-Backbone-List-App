@@ -192,27 +192,42 @@ $(document).ready(function(){
   console.log('callback - particles.js config loaded');
 	});
 });
-/*$(document).ready(function(){
 
-	$(".add-blog").on("click", function(){
-		var blog = new Blog({
-			author: $(".author-input").val(), 
-			title:$(".title-input").val(),
-			url:$(".url-input").val()
-		});
-		$(".author-input").val('');
-		$(".title-input").val('');
-		$(".url-input").val('');
-		console.log(blog.toJSON()); 
-		blogs.add(blog); 
-		blog.save(null, {
-			success: function(response){
-				//console.log('Successfuly saved blog with id: '+ response.toJSON().id);
-				console.log(response); 
-			},
-			error: function(response) {
-				console.log("Error: " + response); 
-			}
-		});
+$(document).ready(function(){
+
+	$(".add-hackathon").on("click", function(){
+		if($(".name-input").val() == '' || $(".location-input").val() == '' || $(".date-input").val() == ''){
+			alert('Incomplete fields');
+		}
+		else{
+			var hackathon = new Hackathon({
+				name: $(".name-input").val(), 
+				organiser: $(".organiser-input").val(),
+				location: $(".location-input").val(),
+				date: $(".date-input").val(),
+				image: $(".image-input").val(),
+				url: $(".url-input").val()
+
+			});
+		
+			$(".name-input").val('');
+			$(".organiser-input").val('');
+			$(".location-input").val('');
+			$(".date-input").val('');
+			$(".image-input").val('');
+			$(".url-input").val('');
+
+			console.log(hackathon.toJSON()); 
+			hackathons.add(hackathon); 
+			hackathon.save(null, {
+				success: function(response){
+					//console.log('Successfuly saved blog with id: '+ response.toJSON().id);
+					console.log(response); 
+				},
+				error: function(response) {
+					console.log("Error: " + response); 
+				}
+			});
+		}
 	});
-});*/
+});

@@ -3,45 +3,61 @@
 		<title></title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		
-
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 	</head>
 
 	<body>
-	<div class="container"><h1> Hackathon Directory </h1>
+	<!--<div class="menu-bar"></div>-->
 	
-	<!--<table class="table">
-		<thead>
-			<tr>
-				<th>Hackathon</th> 
-				<th>Organiser</th> 
-				<th>Location</th> 
-				<th>Date</th>
-				<th>Image</th>
-				<th>Website</th>
-			</tr>
+		<div class="container nav-title">
+			<h1> Hackathon Directory </h1>
+		</div>
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Hackathon<span style="color:red;">*</span></th> 
+					<th>Organiser</th> 
+					<th>Location<span style="color:red;">*</span></th> 
+					<th>Date<span style="color:red;">*</span></th>
+					<th>Image</th>
+					<th>Website</th>
+				</tr>
 
-			<tr>
-				<td><input class="form-control author-input"></td>
-				<td><input class="form-control title-input"></td> 
-				<td><input class="form-control url-input"></td> 
-				<td><button class="btn btn-primary add-blog">Add</td>
-			</tr>
-	</thead>
-		<tbody class="blogs-list"></tbody>
-		<tbody class="hackathons-list"></tbody>
+				<tr>
+					<td><input class="form-control name-input"></td>
+					<td><input class="form-control organiser-input"></td> 
+					<td><input class="form-control location-input"></td> 
+					<td><input class="form-control date-input"></td> 
+					<td><input class="form-control image-input"></td> 
+					<td><input class="form-control url-input"></td> 
+
+					<td><button class="btn btn-primary add-hackathon">Add</td>
+					
+				</tr>
+			</thead>
+		<!--<tbody class="blogs-list"></tbody>
+		<tbody class="hackathons-list"></tbody>-->
 		
 
-	</table>-->
+		</table>
+	
+
 	<div id="particles-js">
-		<div class="hackathons-list"></div>
+		<div class="hackathons-list">
+			
+		</div>
 	</div>
 	
-	</div>
+
 	
 	
 
 	<script type="text/template" class="hackathons-list-template">
 
+	
 		<div class="card">
 			<a class="event-info event-url" href='<%= url %>'><div class="event-image" style="background-image:url(<%= image %>);background-size:100% 100%; background-position:center; background-repeat:no-repeat; "></div></a> 
 			<div class="lineb"></div>
@@ -52,6 +68,7 @@
 			</div>
 
 		</div>
+
 	</script> 
 
 	<!--<script type="text/template" class="blogs-list-template">

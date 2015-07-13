@@ -214,6 +214,35 @@ func FetchHackathons(rw http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 }
 
+func PostHackathon(rw http.ResponseWriter, r *http.Request) {
+	decoder := json.NewDecoder(r.Body)
+	var hack Hackathon
+	err := decoder.Decode(&hack)
+	if err != nil {
+		panic(err)
+	}
+
+	/************* Connecting to DB *************/
+
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	checkErr(err)
+	/******************************************/
+
+	/************* Writing to DB *************/
+
+	var lastInsertId int
+	//pquery, err := db.Prepare("INSERT INTO Blog(author, title, url) VALUES(?, ?, ?)")
+	err = db.QueryRow("INSERT INTO Hackathons(name, organiser, location, date, image, url) VALUES($1,$2,$3,$4,$5,$6) returning id;", hack.Name, hack.Organiser, hack.Location, hack.Date, hack.Image, hack.Url).Scan(&lastInsertId)
+	checkErr(err)
+
+	fmt.Fprintf(rw, "Success! Inserted:"+string(lastInsertId))
+
+	/******************************************/
+
+	defer db.Close()
+
+}
+
 func checkErr(err error) {
 	if err != nil {
 		panic(err)
