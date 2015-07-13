@@ -243,6 +243,7 @@ $(document).ready(function(){
 
 			console.log(hackathon.toJSON()); 
 			hackathons.add(hackathon); 
+			original.add(hackathon);
 			hackathon.save(null, {
 				success: function(response){
 					//console.log('Successfuly saved blog with id: '+ response.toJSON().id);
