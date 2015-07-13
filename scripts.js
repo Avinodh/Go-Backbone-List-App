@@ -17,6 +17,8 @@ var Hackathons = Backbone.Collection.extend({
 
 // Instantiate a new hackathon Collection
 var hackathons = new Hackathons(); 
+var original = new Hackathons(); 
+original = _.clone(hackathons);
 
 //View for one Hackathon
 var HackathonView = Backbone.View.extend({
@@ -39,6 +41,7 @@ var HackathonsView = Backbone.View.extend({
 		var self = this; 
 		this.model.on('add', this.render, this); 
 		this.model.on('change', this.render, this);
+		this.model.on('reset', this.render, this);
 		this.model.fetch({
 			success: function(response)
 			{
@@ -187,6 +190,27 @@ var BlogsView = Backbone.View.extend({
 //var blogsView = new BlogsView(); 
 var hackathonsView = new HackathonsView();
 
+
+function getList(){
+	/*var search_val = $(".search-query").val();
+				$.get('/api/search', {query: search_val}, function(data) {
+					console.log(search_val);
+					console.log(data);  
+				});*/
+	var query_string = $(".search-query").val(); 
+	var results = new Hackathons();
+	original.each(function(model){
+			if(model.toJSON().name.toLowerCase().indexOf(query_string.toLowerCase()) != -1)
+			{
+				results.add(model);
+				//var hackathonsView = new HackathonsView({model:results});
+				//console.log(model.toJSON().name); 
+			}
+		});
+	hackathons.reset(results.toJSON());
+
+	
+}
 $(document).ready(function(){
 	particlesJS.load('particles-js', '/particles.js-master/particles.json', function() {
   console.log('callback - particles.js config loaded');
