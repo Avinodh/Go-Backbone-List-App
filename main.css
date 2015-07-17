@@ -5,11 +5,15 @@
 	text-align: center;
 	color:white;
 	box-shadow: 2px 2px 2px gray;
-	text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
 
+.nav-title h1{
+		text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;
+		display: inline-block;
+}
 
 .card{
 	width:220px;
@@ -20,13 +24,19 @@
 	box-shadow:2px 2px 4px black;
 	margin-right:40px;
 	vertical-align: top; 
+	margin-bottom:35px;
 	
 }
 
-#search{
-	width:100px; 
-	margin-left:auto;
-	margin-right:auto;
+.search{
+  	width: 150px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	display: inline-block;
+  	position: relative;
+  	float: right;
+  	margin-top:-50px;
+	margin-right:40px;
 }
 
 .event-image{
@@ -68,4 +78,21 @@
 .particles-js-canvas-el{
 	background-color:#2C3E50;
 	background-attachment: fixed;
+}
+
+.search-query{
+	width:90%;
+	display: inline-block;
+	float: right;
+}
+
+.fa-search{
+	display:inline-block;
+	float: left;
+	margin-top:8px;	
+}
+
+.event-name{
+	margin-bottom:25px;
+	margin-top:15px;
 }

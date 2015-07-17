@@ -2,7 +2,7 @@
 	<head>
 		<title></title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -13,6 +13,13 @@
 	
 		<div class="container nav-title">
 			<h1> Hackathon Directory </h1>
+			<div id="search-name" class="search">
+				<i class="fa fa-search"></i><input placeholder="Search name.." class="form-control search-query" onkeyup="getListByName();">
+			</div>
+
+			<div id="search-location" class="search">
+				<i class="fa fa-search"></i><input placeholder="Search location.." class="form-control search-query" onkeyup="getListByLocation();">
+			</div>
 		</div>
 	
 		<table class="table">
@@ -46,13 +53,11 @@
 	
 
 	<div id="particles-js">
-		<div id="search">
-			<h6>Search</h6>
-			<input class="form-control search-query" onkeyup="getList();">
-		</div>
+		
 		<div class="hackathons-list">
 			
 		</div>
+
 	</div>
 	
 

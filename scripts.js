@@ -191,13 +191,13 @@ var BlogsView = Backbone.View.extend({
 var hackathonsView = new HackathonsView();
 
 
-function getList(){
+function getListByName(){
 	/*var search_val = $(".search-query").val();
 				$.get('/api/search', {query: search_val}, function(data) {
 					console.log(search_val);
 					console.log(data);  
 				});*/
-	var query_string = $(".search-query").val(); 
+	var query_string = $("#search-name .search-query").val(); 
 	var results = new Hackathons();
 	original.each(function(model){
 			if(model.toJSON().name.toLowerCase().indexOf(query_string.toLowerCase()) != -1)
@@ -207,10 +207,24 @@ function getList(){
 				//console.log(model.toJSON().name); 
 			}
 		});
-	hackathons.reset(results.toJSON());
-
-	
+	hackathons.reset(results.toJSON());	
 }
+
+function getListByLocation(){
+	var query_string = $("#search-location .search-query").val(); 
+	var results = new Hackathons();
+	original.each(function(model){
+			if(model.toJSON().location.toLowerCase().indexOf(query_string.toLowerCase()) != -1)
+			{
+				results.add(model);
+				//var hackathonsView = new HackathonsView({model:results});
+				//console.log(model.toJSON().name); 
+			}
+		});
+	hackathons.reset(results.toJSON());	
+}
+
+
 $(document).ready(function(){
 	particlesJS.load('particles-js', '/particles.js-master/particles.json', function() {
   console.log('callback - particles.js config loaded');
@@ -256,3 +270,4 @@ $(document).ready(function(){
 		}
 	});
 });
+
