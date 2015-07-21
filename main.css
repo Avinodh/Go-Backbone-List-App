@@ -30,13 +30,22 @@
 
 .search{
   	width: 150px;
-  	margin-left: auto;
-  	margin-right: auto;
-  	display: inline-block;
-  	position: relative;
+  	/*margin-left: auto;
+  	margin-right: auto;*/
+  	
+  	
   	float: right;
-  	margin-top:-50px;
-	margin-right:40px;
+	/*margin-right:40px;*/
+}
+
+#search-name{
+	display: inline-block;
+	position: relative;
+}
+
+#search-location{
+	display: inline-block;
+	position: relative;
 }
 
 .event-image{
